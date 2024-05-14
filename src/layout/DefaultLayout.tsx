@@ -1,6 +1,7 @@
 import React, { useState, ReactNode } from 'react';
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/Sidebar';
+import Footer from '../components/Footer/Footer';
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -26,6 +27,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
             </div>
           </main>
           {/* <!-- ===== Main Content End ===== --> */}
+          <Footer />
         </div>
         {/* <!-- ===== Content Area End ===== --> */}
       </div>
