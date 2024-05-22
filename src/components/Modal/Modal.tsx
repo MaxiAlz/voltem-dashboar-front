@@ -23,6 +23,7 @@ const Modal = ({
         className="relative z-9999"
         aria-labelledby="modal-title"
         role="dialog"
+        aria-modal="true"
       >
         <div className="fixed inset-0 bg-black dark:bg-opacity-90 bg-opacity-60 transition-opacity w-full "></div>
         <div className="fixed inset-0 z-99999 w-screen overflow-y-auto ">
