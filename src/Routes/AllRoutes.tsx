@@ -14,6 +14,7 @@ import Buttons from '../pages/UiElements/Buttons';
 import SignIn from '../pages/Authentication/SignIn';
 import SignUp from '../pages/Authentication/SignUp';
 import ProtectedRoutes from './ProtectedRoutes';
+import OverView from '../pages/Dashboard/overview/OverView';
 
 const AllRoutes = () => {
   return (
@@ -29,6 +30,15 @@ const AllRoutes = () => {
 
       <Route
         index
+        element={
+          <>
+            <PageTitle title="Overview|VOLTEM " />
+            <OverView />
+          </>
+        }
+      />
+      <Route
+        path="/ecomerce"
         element={
           <>
             <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
