@@ -1,37 +1,20 @@
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { errorMesagges } from '../../common/errorMesages/errorMessages';
-
 // TODO: Agregar useRef para que pueda enviar el formulario desde el boton del modal
-const userValidationSchema = Yup.object({
-  lastname: Yup.string()
-    .required(errorMesagges.required)
-    .min(5, errorMesagges.shorterText),
-  name: Yup.string().required(errorMesagges.required),
-  companyname: Yup.string().required(errorMesagges.required),
-  username: Yup.string().required(errorMesagges.required),
-  email: Yup.string()
-    .email(errorMesagges.invalidEmail)
-    .required(errorMesagges.required),
-  adress: Yup.string().required(errorMesagges.required),
-});
 
-const UserForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      lastname: '',
-      companyname: '',
-      username: '',
-      email: '',
-      adress: '',
-    },
-    validationSchema: userValidationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+import { FormikProps } from 'formik';
 
+interface UserFormValues {
+  name: string;
+  lastname: string;
+  companyname: string;
+  username: string;
+  email: string;
+  adress: string;
+}
+interface UserFormProps {
+  formik: FormikProps<UserFormValues>;
+}
+
+const UserForm = ({ formik }: UserFormProps) => {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
@@ -183,7 +166,6 @@ const UserForm = () => {
             />
           </div>
         </div>
-        <button type="submit">enviar formualrio</button>
       </form>
     </div>
   );

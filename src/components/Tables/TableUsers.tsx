@@ -1,8 +1,6 @@
-import { useState } from 'react';
-import { CustomButton } from '../Buttons/CustomButtons';
-import Modal from '../Modal/Modal';
 import AvatarInitials from '../Avatar/AvatarInitials';
-import { UserForm } from '../Forms';
+
+import CreateNewUSerModal from '../Modal/CreateNewUSerModal';
 
 const users = [
   {
@@ -62,29 +60,14 @@ const users = [
 // };
 
 const TableUsers = () => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
   return (
     <>
-      <Modal
-        isModalOpen={openModal}
-        closeModal={() => setOpenModal(false)}
-        title={'Crear usuario'}
-        successTitle={'Crear usuario'}
-        icon={'send'}
-      >
-        <UserForm />
-      </Modal>
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="flex justify-between place-items-center mb-5 px-5">
           <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
             Usuarios
           </h4>
-          <CustomButton
-            onClick={() => setOpenModal(true)}
-            text={'Nuevo usuario'}
-            icon={'Add'}
-            color={'primary'}
-          />
+          <CreateNewUSerModal />
         </div>
         <table className="w-full table-auto">
           <thead>
