@@ -1,5 +1,10 @@
 export const adminItems = [
   {
+    to: '/',
+    text: 'Overview',
+    icon: <span className="material-symbols-outlined">dashboard</span>,
+  },
+  {
     to: '/users',
     text: 'Usuarios',
     icon: <span className="material-symbols-outlined">group</span>,
