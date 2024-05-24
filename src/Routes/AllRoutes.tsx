@@ -16,6 +16,12 @@ import SignUp from '../pages/Authentication/SignUp';
 import ProtectedRoutes from './ProtectedRoutes';
 import OverView from '../pages/Dashboard/overview/OverView';
 
+const user = {
+  id: 1,
+  name: 'Juancarlo',
+  role: 'ADMIN',
+};
+
 const AllRoutes = () => {
   return (
     <Routes>
@@ -28,144 +34,167 @@ const AllRoutes = () => {
         }
       />
 
-      <Route
-        index
-        element={
-          <>
-            <PageTitle title="Overview|VOLTEM " />
-            <OverView />
-          </>
-        }
-      />
-      <Route
-        path="/ecomerce"
-        element={
-          <>
-            <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <ECommerce />
-          </>
-        }
-      />
-      <Route
-        path="/users"
-        element={
-          <>
-            <PageTitle title="Usuarios | Voltem Dashboard" />
-            <UsersView />
-          </>
-        }
-      />
-      <Route
-        path="/hubs"
-        element={
-          <>
-            <PageTitle title="Tabla de usuarios - Voltem Dashboard" />
-            <HubsView />
-          </>
-        }
-      />
-      <Route
-        path="/calendar"
-        element={
-          <>
-            <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <Calendar />
-          </>
-        }
-      />
+      {/* Rutas para admin */}
+      {user && user.role === 'ADMIN' ? adminRoutes : null}
 
+      {/* Rutas publicas */}
+      {publicRoutes}
+
+      {/* Ruta de error */}
       <Route
-        path="/profile"
+        path="*"
         element={
-          <>
-            <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <Profile />
-          </>
-        }
-      />
-      <Route
-        path="/forms/form-elements"
-        element={
-          <>
-            <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <FormElements />
-          </>
-        }
-      />
-      <Route
-        path="/forms/form-layout"
-        element={
-          <>
-            <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <FormLayout />
-          </>
-        }
-      />
-      <Route
-        path="/tables"
-        element={
-          <>
-            <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <Tables />
-          </>
-        }
-      />
-      <Route
-        path="/settings"
-        element={
-          <>
-            <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <Settings />
-          </>
-        }
-      />
-      <Route
-        path="/chart"
-        element={
-          <>
-            <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <Chart />
-          </>
-        }
-      />
-      <Route
-        path="/ui/alerts"
-        element={
-          <>
-            <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <Alerts />
-          </>
-        }
-      />
-      <Route
-        path="/ui/buttons"
-        element={
-          <>
-            <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <Buttons />
-          </>
-        }
-      />
-      <Route
-        path="/auth/signin"
-        element={
-          <>
-            <PageTitle title="Signin | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <SignIn />
-          </>
-        }
-      />
-      <Route
-        path="/auth/signup"
-        element={
-          <>
-            <PageTitle title="Signup | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-            <SignUp />
-          </>
+          <div className="m-auto ">
+            <h1 className="m-20 text-5xl">Ah ocurrido un error :(</h1>
+          </div>
         }
       />
     </Routes>
   );
 };
+
+const publicRoutes = [
+  <Route
+    path="/ecomerce"
+    key="/ecomerce"
+    element={
+      <>
+        <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <ECommerce />
+      </>
+    }
+  />,
+  <Route
+    path="/calendar"
+    key="/calendar"
+    element={
+      <>
+        <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <Calendar />
+      </>
+    }
+  />,
+
+  <Route
+    path="/profile"
+    element={
+      <>
+        <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <Profile />
+      </>
+    }
+  />,
+  <Route
+    path="/forms/form-elements"
+    element={
+      <>
+        <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <FormElements />
+      </>
+    }
+  />,
+  <Route
+    path="/forms/form-layout"
+    element={
+      <>
+        <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <FormLayout />
+      </>
+    }
+  />,
+  <Route
+    path="/tables"
+    element={
+      <>
+        <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <Tables />
+      </>
+    }
+  />,
+  <Route
+    path="/settings"
+    element={
+      <>
+        <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <Settings />
+      </>
+    }
+  />,
+  <Route
+    path="/chart"
+    element={
+      <>
+        <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <Chart />
+      </>
+    }
+  />,
+  <Route
+    path="/ui/alerts"
+    element={
+      <>
+        <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <Alerts />
+      </>
+    }
+  />,
+  <Route
+    path="/ui/buttons"
+    element={
+      <>
+        <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <Buttons />
+      </>
+    }
+  />,
+  <Route
+    path="/auth/signin"
+    element={
+      <>
+        <PageTitle title="Signin | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <SignIn />
+      </>
+    }
+  />,
+  <Route
+    path="/auth/signup"
+    element={
+      <>
+        <PageTitle title="Signup | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        <SignUp />
+      </>
+    }
+  />,
+];
+
+const adminRoutes = [
+  <Route
+    index
+    element={
+      <>
+        <PageTitle title="Overview|VOLTEM " />
+        <OverView />
+      </>
+    }
+  />,
+  <Route
+    path="/users"
+    element={
+      <>
+        <PageTitle title="Usuarios | Voltem Dashboard" />
+        <UsersView />
+      </>
+    }
+  />,
+  <Route
+    path="/hubs"
+    element={
+      <>
+        <PageTitle title="Tabla de usuarios - Voltem Dashboard" />
+        <HubsView />
+      </>
+    }
+  />,
+];
 
 export { AllRoutes };
