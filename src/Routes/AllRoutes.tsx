@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import ECommerce from '../pages/Dashboard/ECommerce';
 import PageTitle from '../components/PageTitle';
-import { HubsView, UsersView } from '../pages/Dashboard/Dashboard';
+import { HubsView, UsersView, OverView } from '../pages/Dashboard/Dashboard';
 import Calendar from '../pages/Calendar';
 import Profile from '../pages/Profile';
 import FormElements from '../pages/Form/FormElements';
@@ -14,7 +14,6 @@ import Buttons from '../pages/UiElements/Buttons';
 import SignIn from '../pages/Authentication/SignIn';
 import SignUp from '../pages/Authentication/SignUp';
 import ProtectedRoutes from './ProtectedRoutes';
-import OverView from '../pages/Dashboard/overview/OverView';
 
 const user = {
   id: 1,
@@ -54,6 +53,16 @@ const AllRoutes = () => {
 };
 
 const publicRoutes = [
+  <Route
+    path="/login"
+    key="/login"
+    element={
+      <>
+        <PageTitle title="Login | VOLTEM" />
+        <SignIn />
+      </>
+    }
+  />,
   <Route
     path="/ecomerce"
     key="/ecomerce"
@@ -172,7 +181,16 @@ const adminRoutes = [
     index
     element={
       <>
-        <PageTitle title="Overview|VOLTEM " />
+        <PageTitle title="Overview | VOLTEM " />
+        <OverView />
+      </>
+    }
+  />,
+  <Route
+    path="/overview"
+    element={
+      <>
+        <PageTitle title="Overview | VOLTEM" />
         <OverView />
       </>
     }
@@ -181,7 +199,7 @@ const adminRoutes = [
     path="/users"
     element={
       <>
-        <PageTitle title="Usuarios | Voltem Dashboard" />
+        <PageTitle title="Usuarios | VOLTEM" />
         <UsersView />
       </>
     }
@@ -190,7 +208,7 @@ const adminRoutes = [
     path="/hubs"
     element={
       <>
-        <PageTitle title="Tabla de usuarios - Voltem Dashboard" />
+        <PageTitle title="Hubs | VOLTEM" />
         <HubsView />
       </>
     }
