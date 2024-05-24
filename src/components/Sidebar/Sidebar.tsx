@@ -70,7 +70,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           <img src={Logo} alt="Logo" />
         </NavLink>
 
-        {/* Boron que cierra el sidebar cuanto esta en mobil */}
+        {/* Boton que cierra el sidebar cuanto esta en mobil */}
         <button
           ref={trigger}
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -123,19 +123,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 MENU
               </h3>
               {/* <!-- Menu Item Dashboard --> */}
-              <SidebarLinkGroup
-                activeCondition={
-                  pathname === '/' || pathname.includes('dashboard')
-                }
-              >
+              <SidebarLinkGroup activeCondition={pathname === '/dashboard'}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <NavLink
                         to="#"
                         className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                          (pathname === '/' ||
-                            pathname.includes('dashboard')) &&
+                          pathname === '/dashboard' &&
                           'bg-graydark dark:bg-meta-4'
                         }`}
                         onClick={(e) => {

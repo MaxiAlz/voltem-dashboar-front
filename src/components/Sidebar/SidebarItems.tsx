@@ -1,6 +1,6 @@
 export const adminItems = [
   {
-    to: '/',
+    to: '/overview',
     text: 'Overview',
     icon: <span className="material-symbols-outlined">dashboard</span>,
   },

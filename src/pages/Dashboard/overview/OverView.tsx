@@ -2,10 +2,25 @@ import DefaultLayout from '../../../layout/DefaultLayout';
 import CardDataStats from '../../../components/Cards/CardDataStats';
 import ChartOne from '../../../components/Charts/ChartOne';
 import ChartThree from '../../../components/Charts/ChartThree';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
+import { setUser } from '../../../redux/slices/userSlice';
 
 const OverView = () => {
+  const user = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+
+  const userValues = {
+    name: 'jauncarlo',
+    username: 'juancarlo234',
+    email: 'jauncarlo@jauncarlo.com',
+    role: 'ADMIN',
+  };
+
   return (
     <DefaultLayout>
+      <h1>Hola: {user.name}</h1>
+      <button onClick={() => dispatch(setUser(userValues))}>dala laiik</button>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <CardDataStats title="Usuarios totales" total="14" rate="0.95%" levelUp>
           <span className="material-symbols-outlined text-primary">group</span>
@@ -37,4 +52,4 @@ const OverView = () => {
   );
 };
 
-export default OverView;
+export { OverView };
