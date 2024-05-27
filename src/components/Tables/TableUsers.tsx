@@ -1,7 +1,5 @@
 import AvatarInitials from '../Avatar/AvatarInitials';
 
-import CreateNewUSerModal from '../Modal/CreateNewUSerModal';
-
 const users = [
   {
     name: 'Mariano',
@@ -45,30 +43,13 @@ const users = [
   },
 ];
 
-// const Chip = () => {
-//   <p
-//     className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-//       packageItem.status === 'Paid'
-//         ? 'bg-success text-success'
-//         : packageItem.status === 'Unpaid'
-//         ? 'bg-danger text-danger'
-//         : 'bg-warning text-warning'
-//     }`}
-//   >
-//     {packageItem.status}
-//   </p>;
-// };
 
 const TableUsers = () => {
+ 
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-        <div className="flex justify-between place-items-center mb-5 px-5">
-          <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-            Usuarios
-          </h4>
-          <CreateNewUSerModal />
-        </div>
+       
         <table className="w-full table-auto">
           <thead>
             <tr className="bg-gray-2 text-left dark:bg-meta-4">

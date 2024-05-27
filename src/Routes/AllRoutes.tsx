@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import ECommerce from '../pages/Dashboard/ECommerce';
 import PageTitle from '../components/PageTitle';
-import { HubsView, UsersView } from '../pages/Dashboard/Dashboard';
+import { HubsView, UsersPage } from '../pages/Dashboard/Dashboard';
 import Calendar from '../pages/Calendar';
 import Profile from '../pages/Profile';
 import FormElements from '../pages/Form/FormElements';
@@ -51,7 +51,7 @@ const AllRoutes = () => {
         element={
           <>
             <PageTitle title="Usuarios | Voltem Dashboard" />
-            <UsersView />
+            <UsersPage />
           </>
         }
       />

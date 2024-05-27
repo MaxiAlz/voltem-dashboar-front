@@ -22,7 +22,7 @@ const Modal = ({
   return (
     isModalOpen && (
       <div
-        className="relative z-9999"
+        className="relative z-999"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"

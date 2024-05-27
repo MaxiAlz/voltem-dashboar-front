@@ -1,15 +1,14 @@
-import { useState } from 'react';
 import Modal from './Modal';
-import { CustomButton } from '../Buttons/CustomButtons';
 import { UserForm } from '../Forms';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { errorMesagges } from '../../common/errorMesages/errorMessages';
 
+
 const userValidationSchema = Yup.object({
   lastname: Yup.string()
     .required(errorMesagges.required)
-    .min(5, errorMesagges.shorterText),
+    .min(2, errorMesagges.shorterText),
   name: Yup.string().required(errorMesagges.required),
   companyname: Yup.string().required(errorMesagges.required),
   username: Yup.string().required(errorMesagges.required),
@@ -19,8 +18,14 @@ const userValidationSchema = Yup.object({
   adress: Yup.string().required(errorMesagges.required),
 });
 
-const CreateNewUSerModal = () => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
+
+interface Props {
+  openModal: boolean,
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const CreateNewUserModal = ({openModal, setOpenModal}:Props) => {
+  
 
   const formik = useFormik({
     initialValues: {
@@ -32,22 +37,21 @@ const CreateNewUSerModal = () => {
       adress: '',
     },
     validationSchema: userValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       alert(JSON.stringify(values, null, 2));
+      resetForm()
     },
   });
 
   return (
     <>
-      <CustomButton
-        onClick={() => setOpenModal(true)}
-        text={'Nuevo usuario'}
-        icon={'Add'}
-        color={'primary'}
-      />
+      
       <Modal
         isModalOpen={openModal}
-        closeModal={() => setOpenModal(false)}
+        closeModal={() => {
+          setOpenModal(false);
+          formik.resetForm();
+        }}
         title={'Crear usuario'}
         successTitle={'Crear usuario'}
         icon={'send'}
@@ -59,4 +63,4 @@ const CreateNewUSerModal = () => {
   );
 };
 
-export default CreateNewUSerModal;
+export default CreateNewUserModal;
