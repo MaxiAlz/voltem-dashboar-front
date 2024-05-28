@@ -4,17 +4,24 @@ import TableUsers from '../../../components/Tables/TableUsers';
 import DefaultLayout from '../../../layout/DefaultLayout';
 import { CustomButton } from '../../../components/Buttons/CustomButtons';
 import useAxios from '../../../hooks/useAxios';
+import { PaginatedData } from '../../../common/interfaces/PaginatedData';
+import axiosInstance from '../../../util/axios';
 
-interface Data {
+export interface UserData {
   id: string,
   name: string,
-  age: number,
+  lastname: string,
+  username: string,
+  is_active: string
 }
 
 
 export const UsersPage = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const {data, error, loading, refetch} = useAxios<Data>("usersd");
+  const {data, error, loading, refetch} = useAxios<UserData>("user");
+  
+
+  
   return (
     <DefaultLayout>
        <div className="flex justify-between place-items-center mb-5 px-5">
@@ -31,8 +38,8 @@ export const UsersPage = () => {
         />
         </div>
       
-      <CreateNewUserModal openModal={openModal} setOpenModal={setOpenModal}/>
-      <TableUsers />
+      <CreateNewUserModal openModal={openModal} setOpenModal={setOpenModal} afterSubmit={refetch}/>
+      <TableUsers data={data?.items} />
     </DefaultLayout>
   );
 };

@@ -5,10 +5,11 @@ import { FormikProps } from 'formik';
 interface UserFormValues {
   name: string;
   lastname: string;
-  companyname: string;
+  // companyname: string;
   username: string;
   email: string;
-  adress: string;
+  // adress: string;
+  password: string;
 }
 interface UserFormProps {
   formik: FormikProps<UserFormValues>;
@@ -65,7 +66,7 @@ const UserForm = ({ formik }: UserFormProps) => {
             </div>
           </div>
 
-          <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
+          {/* <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
             <div className="w-full xl:w-1/2">
               <label className="mb-1 block text-black dark:text-white">
                 Empresa / Negocio
@@ -86,7 +87,31 @@ const UserForm = ({ formik }: UserFormProps) => {
               {formik.touched.companyname && formik.errors.companyname ? (
                 <div className="text-red-500">{formik.errors.companyname}</div>
               ) : null}
-            </div>
+            </div> */}
+
+          <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
+            <div className="w-full xl:w-1/2">
+              <label className="mb-1 block text-black dark:text-white">
+                Constraseña
+              </label>
+              <input
+                id="password"
+                name="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+                type="text"
+                placeholder=""
+                className={`w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary ${
+                  formik.touched.password && formik.errors.password
+                    ? 'border-red-500'
+                    : ''
+                }`}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <div className="text-red-500">{formik.errors.password}</div>
+              ) : null}
+            </div> 
+           
 
             <div className="w-full xl:w-1/2">
               <label className="mb-1 block text-black dark:text-white">
@@ -110,7 +135,7 @@ const UserForm = ({ formik }: UserFormProps) => {
               ) : null}
             </div>
           </div>
-
+          </div>
           <div className="mb-4.5">
             <label className="mb-1 block text-black dark:text-white">
               Email
@@ -133,7 +158,7 @@ const UserForm = ({ formik }: UserFormProps) => {
             ) : null}
           </div>
 
-          <div className="mb-4.5">
+          {/* <div className="mb-4.5">
             <label className="mb-1 block text-black dark:text-white">
               Direccion
             </label>
@@ -154,7 +179,7 @@ const UserForm = ({ formik }: UserFormProps) => {
               <div className="text-red-500">{formik.errors.adress}</div>
             ) : null}
           </div>
-        </div>
+        </div> */}
       </form>
     </div>
   );

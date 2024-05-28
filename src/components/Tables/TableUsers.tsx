@@ -1,50 +1,11 @@
+import { UserData } from '../../pages/Dashboard/users/UsersPage';
 import AvatarInitials from '../Avatar/AvatarInitials';
 
-const users = [
-  {
-    name: 'Mariano',
-    lastName: 'Del Valle',
-    email: 'marianito@hotmail.com',
-    company: 'Puchitos',
-    address: 'Av. Simepreviva 125',
-    hubs_amount: 3,
-  },
-  {
-    name: 'Laura',
-    lastName: 'García',
-    email: 'laura.garcia@example.com',
-    company: 'TechSolutions',
-    address: 'Calle Rosas 123',
-    hubs_amount: 5,
-  },
-  {
-    name: 'Carlos',
-    lastName: 'López',
-    email: 'carlos.lopez@example.com',
-    company: 'Innovatech',
-    address: 'Avenida Central 567',
-    hubs_amount: 2,
-  },
-  {
-    name: 'Ana',
-    lastName: 'Martínez',
-    email: 'ana.martinez@example.com',
-    company: 'SoftDev',
-    address: 'Calle Principal 789',
-    hubs_amount: 4,
-  },
-  {
-    name: 'Diego',
-    lastName: 'Rodríguez',
-    email: 'diego.rodriguez@example.com',
-    company: 'WebWorks',
-    address: 'Plaza Mayor 246',
-    hubs_amount: 1,
-  },
-];
+interface Props{
+  data?: UserData[]
+}
 
-
-const TableUsers = () => {
+const TableUsers = ({data}:Props) => {
  
   return (
     <>
@@ -68,23 +29,23 @@ const TableUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, key) => (
+            {data?.map((userData, key) => (
               <tr key={key}>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <div className="flex items-center">
-                    <AvatarInitials name={user.name} lastName={user.lastName} />
+                    <AvatarInitials name={userData.name} lastName={userData.lastname} />
                     <div className="ml-3">
                       <h5 className="font-medium text-black dark:text-white">
-                        {user.name} {user.lastName}
+                        {userData.name} {userData.lastname}
                       </h5>
-                      <p className="text-pretty ">{user.email}</p>
-                      <p className="text-sm">{user.address}</p>
+                      <p className="text-pretty ">userData.email</p>
+                      <p className="text-sm">user.address</p>
                     </div>
                   </div>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-sm bg-primary text-primary dark:bg-blue-300 dark:text-black">
-                    hubs: {user.hubs_amount}
+                    hubs: user.hubs_amount
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
