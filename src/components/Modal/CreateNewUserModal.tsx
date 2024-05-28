@@ -1,53 +1,74 @@
-import { useState } from 'react';
 import Modal from './Modal';
-import { CustomButton } from '../Buttons/CustomButtons';
 import { UserForm } from '../Forms';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { errorMesagges } from '../../common/errorMesages/errorMessages';
+import axiosInstance from '../../util/axios';
+import { notify } from '../../hooks/notify';
+
 
 const userValidationSchema = Yup.object({
   lastname: Yup.string()
     .required(errorMesagges.required)
-    .min(5, errorMesagges.shorterText),
+    .min(2, errorMesagges.shorterText),
   name: Yup.string().required(errorMesagges.required),
-  companyname: Yup.string().required(errorMesagges.required),
+  // companyname: Yup.string().required(errorMesagges.required),
   username: Yup.string().required(errorMesagges.required),
   email: Yup.string()
     .email(errorMesagges.invalidEmail)
     .required(errorMesagges.required),
-  adress: Yup.string().required(errorMesagges.required),
+  // address: Yup.string().required(errorMesagges.required),
+  password: Yup.string().required(errorMesagges.required)
 });
 
-const CreateNewUSerModal = () => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
+
+interface Props {
+  openModal: boolean
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+  afterSubmit?: () => void
+}
+
+const CreateNewUserModal = ({openModal, setOpenModal, afterSubmit }:Props) => {
+  
 
   const formik = useFormik({
     initialValues: {
       name: '',
       lastname: '',
-      companyname: '',
       username: '',
       email: '',
-      adress: '',
+      password:''
     },
     validationSchema: userValidationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values, { resetForm }) => {
+      console.log(values)
+      try{
+        await axiosInstance.post("user", values);
+        notify({message: "se guardo con exito", type:"success"})
+        setOpenModal(false);
+        resetForm()
+        if (afterSubmit) {
+          afterSubmit();
+        }
+      }
+      catch(err){
+        console.log(err)
+        notify({message: "occurio un error", type:"error"})
+      }
+
+      
     },
   });
 
   return (
     <>
-      <CustomButton
-        onClick={() => setOpenModal(true)}
-        text={'Nuevo usuario'}
-        icon={'Add'}
-        color={'primary'}
-      />
+      
       <Modal
         isModalOpen={openModal}
-        closeModal={() => setOpenModal(false)}
+        closeModal={() => {
+          setOpenModal(false);
+          formik.resetForm();
+        }}
         title={'Crear usuario'}
         successTitle={'Crear usuario'}
         icon={'send'}
@@ -59,4 +80,4 @@ const CreateNewUSerModal = () => {
   );
 };
 
-export default CreateNewUSerModal;
+export default CreateNewUserModal;

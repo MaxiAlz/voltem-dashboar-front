@@ -1,74 +1,16 @@
+import { UserData } from '../../pages/Dashboard/users/UsersPage';
 import AvatarInitials from '../Avatar/AvatarInitials';
 
-import CreateNewUSerModal from '../Modal/CreateNewUSerModal';
+interface Props{
+  data?: UserData[]
+}
 
-const users = [
-  {
-    name: 'Mariano',
-    lastName: 'Del Valle',
-    email: 'marianito@hotmail.com',
-    company: 'Puchitos',
-    address: 'Av. Simepreviva 125',
-    hubs_amount: 3,
-  },
-  {
-    name: 'Laura',
-    lastName: 'García',
-    email: 'laura.garcia@example.com',
-    company: 'TechSolutions',
-    address: 'Calle Rosas 123',
-    hubs_amount: 5,
-  },
-  {
-    name: 'Carlos',
-    lastName: 'López',
-    email: 'carlos.lopez@example.com',
-    company: 'Innovatech',
-    address: 'Avenida Central 567',
-    hubs_amount: 2,
-  },
-  {
-    name: 'Ana',
-    lastName: 'Martínez',
-    email: 'ana.martinez@example.com',
-    company: 'SoftDev',
-    address: 'Calle Principal 789',
-    hubs_amount: 4,
-  },
-  {
-    name: 'Diego',
-    lastName: 'Rodríguez',
-    email: 'diego.rodriguez@example.com',
-    company: 'WebWorks',
-    address: 'Plaza Mayor 246',
-    hubs_amount: 1,
-  },
-];
-
-// const Chip = () => {
-//   <p
-//     className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-//       packageItem.status === 'Paid'
-//         ? 'bg-success text-success'
-//         : packageItem.status === 'Unpaid'
-//         ? 'bg-danger text-danger'
-//         : 'bg-warning text-warning'
-//     }`}
-//   >
-//     {packageItem.status}
-//   </p>;
-// };
-
-const TableUsers = () => {
+const TableUsers = ({data}:Props) => {
+ 
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-        <div className="flex justify-between place-items-center mb-5 px-5">
-          <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-            Usuarios
-          </h4>
-          <CreateNewUSerModal />
-        </div>
+       
         <table className="w-full table-auto">
           <thead>
             <tr className="bg-gray-2 text-left dark:bg-meta-4">
@@ -87,23 +29,23 @@ const TableUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, key) => (
+            {data?.map((userData, key) => (
               <tr key={key}>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <div className="flex items-center">
-                    <AvatarInitials name={user.name} lastName={user.lastName} />
+                    <AvatarInitials name={userData.name} lastName={userData.lastname} />
                     <div className="ml-3">
                       <h5 className="font-medium text-black dark:text-white">
-                        {user.name} {user.lastName}
+                        {userData.name} {userData.lastname}
                       </h5>
-                      <p className="text-pretty ">{user.email}</p>
-                      <p className="text-sm">{user.address}</p>
+                      <p className="text-pretty ">userData.email</p>
+                      <p className="text-sm">user.address</p>
                     </div>
                   </div>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-sm bg-primary text-primary dark:bg-blue-300 dark:text-black">
-                    hubs: {user.hubs_amount}
+                    hubs: user.hubs_amount
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
