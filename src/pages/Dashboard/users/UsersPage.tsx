@@ -6,6 +6,7 @@ import { CustomButton } from '../../../components/Buttons/CustomButtons';
 import useAxios from '../../../hooks/useAxios';
 import { PaginatedData } from '../../../common/interfaces/PaginatedData';
 import axiosInstance from '../../../util/axios';
+import Pagination from '../../../components/Pagination';
 
 export interface UserData {
   id: string,
@@ -18,9 +19,11 @@ export interface UserData {
 
 export const UsersPage = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const {data, error, loading, refetch} = useAxios<UserData>("user");
-  
+  const {data, error, loading,setPagination, refetch, pagination} = useAxios<UserData>("user");
 
+  const handlePageChange = (page: number) =>{
+    setPagination({...pagination, currentPage: page})
+  }
   
   return (
     <DefaultLayout>
@@ -39,7 +42,8 @@ export const UsersPage = () => {
         </div>
       
       <CreateNewUserModal openModal={openModal} setOpenModal={setOpenModal} afterSubmit={refetch}/>
-      <TableUsers data={data?.items} />
+      <TableUsers data={data} />
+      <Pagination pagination={pagination} onPageChange={handlePageChange}/>
     </DefaultLayout>
-  );
+  )
 };

@@ -1,17 +1,29 @@
 import { useState, useEffect } from 'react';
 import  { AxiosResponse, AxiosError } from 'axios';
 import axiosInstance from '../util/axios';
-import { PaginatedData } from '../common/interfaces/PaginatedData';
+import { PaginatedData, PaginationInfo } from '../common/interfaces/PaginatedData';
 
 interface UseAxiosResult<T> {
-  data: PaginatedData<T> | null;
+  data: T[] | null;
+  pagination: PaginationInfo;
   error: AxiosError | null;
   loading: boolean;
   refetch: () => void;
+  setPagination: React.Dispatch<React.SetStateAction<PaginationInfo>>
+}
+
+const paginationDefault: PaginationInfo = {
+  currentPage:1,
+  hasNextPage:false,
+  hasPreviousPage:false,
+  pageSize:0,
+  totalItems:0,
+  totalPages:1
 }
 
 const useAxios = <T = unknown>(url: string): UseAxiosResult<T> => {
-  const [data, setData] = useState<PaginatedData<T> | null>(null);
+  const [data, setData] = useState<T[] | null>(null);
+  const [pagination, setPagination] = useState<PaginationInfo>(paginationDefault);  
   const [error, setError] = useState<AxiosError | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -19,8 +31,19 @@ const useAxios = <T = unknown>(url: string): UseAxiosResult<T> => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response: AxiosResponse<PaginatedData<T>> = await axiosInstance.get(url);
-      setData(response.data);
+      const response: AxiosResponse<PaginatedData<T>> = await axiosInstance.get(url + `?size=1&page=${pagination.currentPage}`);
+      const {currentPage, hasNextPage,hasPreviousPage,pageSize, items, totalItems, totalPages} = response.data;
+      
+      setData(items);
+      setPagination({
+        currentPage, 
+        hasNextPage, 
+        hasPreviousPage,
+        pageSize,
+        totalItems,
+        totalPages
+      })
+      
       setError(null);
     } catch (err) {
       setError(err as AxiosError);
@@ -31,13 +54,13 @@ const useAxios = <T = unknown>(url: string): UseAxiosResult<T> => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [pagination.currentPage]);
 
   const refetch = () => {
     fetchData();
   };
 
-  return { data, error, loading, refetch };
+  return { data, pagination, error, loading, refetch, setPagination };
 };
 
 export default useAxios;
