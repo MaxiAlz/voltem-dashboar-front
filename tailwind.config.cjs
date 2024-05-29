@@ -25,8 +25,10 @@ module.exports = {
         bodydark: '#AEB7C0',
         bodydark1: '#DEE4EE',
         bodydark2: '#8A99AF',
-        primary: '#3C50E0',
+        // primary: '#3C50E0', // original
+        primary: '#fd9a1c',
         secondary: '#80CAEE',
+        // voltem_orange:'#fd9a1c',
         stroke: '#E2E8F0',
         gray: '#EFF4FB',
         graydark: '#333A48',
