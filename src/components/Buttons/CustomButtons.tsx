@@ -10,8 +10,8 @@ const CustomButton = ({ onClick, type, text, icon, color }: ButtonsProps) => {
   return (
     <button
       className={`inline-flex items-center justify-center gap-2.5 bg-${
-        color ?? 'primary'
-      } py-4 px-10 text-center font-medium text-white hover:bg-opacity-80 lg:px-8 xl:px-10`}
+        color ?? 'voltem_orange'
+      } py-4 px-10 text-center font-medium text-black text-title hover:bg-opacity-80 lg:px-8 xl:px-10`}
       onClick={onClick}
       type={type}
     >
