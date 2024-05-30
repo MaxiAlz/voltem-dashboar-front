@@ -27,7 +27,7 @@ export const UsersPage = () => {
   
   return (
     <DefaultLayout>
-       <div className="flex justify-between place-items-center mb-5 px-5">
+       <div className="flex justify-between place-items-center mb-5">
           <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
             Usuarios
           </h4>
