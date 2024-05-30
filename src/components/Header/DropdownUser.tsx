@@ -1,16 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import UserOne from '../../images/user/user-01.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { logoutUser } from '../../redux/slices/auth/authSlice';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((state: RootState) => state.auth.user);
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
+
+  const dispath = useDispatch();
+  const navigate = useNavigate();
 
   // close on click outside
   useEffect(() => {
@@ -38,6 +42,10 @@ const DropdownUser = () => {
     return () => document.removeEventListener('keydown', keyHandler);
   });
 
+  const logoutUSer = () => {
+    dispath(logoutUser());
+    navigate('/login');
+  };
   return (
     <div className="relative">
       <Link
@@ -48,7 +56,7 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            {user.name ?? 'Thomas Marolio'}
+            {user?.name ?? 'Thomas Marolio'}
           </span>
           <span className="block text-xs">UX Designer</span>
         </span>
@@ -156,7 +164,10 @@ const DropdownUser = () => {
             </Link>
           </li>
         </ul>
-        <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+        <button
+          onClick={logoutUSer}
+          className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+        >
           <svg
             className="fill-current"
             width="22"
