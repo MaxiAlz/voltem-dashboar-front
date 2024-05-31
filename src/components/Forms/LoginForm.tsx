@@ -36,7 +36,7 @@ const LoginForm = () => {
           console.log('jwt :>> ', jwt);
           dispath(setUser(data));
           dispath(setUserToken(jwt));
-          navigate('/');
+          navigate('/overview');
           notify({ message: '¡Bienvenido!', type: 'success' });
         }
         resetForm();
@@ -51,6 +51,7 @@ const LoginForm = () => {
           notify({
             message: 'occurio un error, pruebe mas tarde',
             type: 'error',
+
           });
         }
       }

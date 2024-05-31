@@ -21,11 +21,12 @@ export const setToken = (token: string): void => {
 // export const checkAuthToken = () => async (dispatch: Dispatch<any>) => {
 //   try {
 //     const jwt = localStorage.getItem(TOKEN_KEY);
+    
 
-//     if (!jwt) {
-//       dispatch(logoutUser());
-//       return null;
-//     }
+//     // if (!jwt) {
+//     //   dispatch(logoutUser());
+//     //   return null;
+//     // }
 
 //     const response: any = await api.get('/profile', null);
 //     dispatch(loginSuccess(response));

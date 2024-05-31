@@ -19,6 +19,7 @@ import { RootState } from '../redux/store';
 
 const AllRoutes = () => {
   const authStatus = useSelector((state: RootState) => state.auth);
+
   const navigate = useNavigate();
   return (
     <Routes>
