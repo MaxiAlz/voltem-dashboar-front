@@ -33,7 +33,6 @@ const LoginForm = () => {
         );
         if (response.status == 201) {
           const jwt = response.headers.authorization;
-          console.log('jwt :>> ', jwt);
           dispath(setUser(data));
           dispath(setUserToken(jwt));
           navigate('/overview');
@@ -41,7 +40,7 @@ const LoginForm = () => {
         }
         resetForm();
       } catch (error: any) {
-        console.log('error :>> ', error);
+        console.error('error :>> ', error);
         if (error.status == 404) {
           notify({
             message: 'Los datos ingresados son incorrectos',
@@ -51,7 +50,6 @@ const LoginForm = () => {
           notify({
             message: 'occurio un error, pruebe mas tarde',
             type: 'error',
-
           });
         }
       }

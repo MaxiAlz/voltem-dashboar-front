@@ -8,7 +8,7 @@ import { logoutUser } from '../../redux/slices/auth/authSlice';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const user = useSelector((state: RootState) => state.auth.user);
+  const { user } = useSelector((state: RootState) => state.auth);
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
@@ -56,9 +56,9 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            {user?.name ?? 'Thomas Marolio'}
+            {user?.name.toUpperCase()} {user?.lastname.toUpperCase()}
           </span>
-          <span className="block text-xs">UX Designer</span>
+          <span className="block text-xs">Usuario voltem</span>
         </span>
 
         <span className="h-12 w-12 rounded-full">

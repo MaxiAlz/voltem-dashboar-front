@@ -6,7 +6,6 @@ import { errorMesagges } from '../../common/errorMesages/errorMessages';
 import axiosInstance from '../../util/axios';
 import { notify } from '../../hooks/notify';
 
-
 const userValidationSchema = Yup.object({
   lastname: Yup.string()
     .required(errorMesagges.required)
@@ -18,51 +17,47 @@ const userValidationSchema = Yup.object({
     .email(errorMesagges.invalidEmail)
     .required(errorMesagges.required),
   // address: Yup.string().required(errorMesagges.required),
-  password: Yup.string().required(errorMesagges.required)
+  password: Yup.string().required(errorMesagges.required),
 });
 
-
 interface Props {
-  openModal: boolean
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
-  afterSubmit?: () => void
+  openModal: boolean;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  afterSubmit?: () => void;
 }
 
-const CreateNewUserModal = ({openModal, setOpenModal, afterSubmit }:Props) => {
-  
-
+const CreateNewUserModal = ({
+  openModal,
+  setOpenModal,
+  afterSubmit,
+}: Props) => {
   const formik = useFormik({
     initialValues: {
       name: '',
       lastname: '',
       username: '',
       email: '',
-      password:''
+      password: '',
     },
     validationSchema: userValidationSchema,
     onSubmit: async (values, { resetForm }) => {
-      console.log(values)
-      try{
-        await axiosInstance.post("user", values);
-        notify({message: "se guardo con exito", type:"success"})
+      try {
+        await axiosInstance.post('user', values);
+        notify({ message: 'se guardo con exito', type: 'success' });
         setOpenModal(false);
-        resetForm()
+        resetForm();
         if (afterSubmit) {
           afterSubmit();
         }
+      } catch (err) {
+        console.error(err);
+        notify({ message: 'occurio un error', type: 'error' });
       }
-      catch(err){
-        console.log(err)
-        notify({message: "occurio un error", type:"error"})
-      }
-
-      
     },
   });
 
   return (
     <>
-      
       <Modal
         isModalOpen={openModal}
         closeModal={() => {

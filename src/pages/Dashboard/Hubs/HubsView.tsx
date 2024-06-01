@@ -1,14 +1,18 @@
 import Breadcrumb from '../../../components/Breadcrumbs/Breadcrumb';
+import PageTitle from '../../../components/PageTitle';
 import DefaultLayout from '../../../layout/DefaultLayout';
 
 // type Props = {};
 
 const HubsView = (/* props: Props */) => {
   return (
-    <DefaultLayout>
-      <Breadcrumb pageName="Centrales" />
-      <div>HubsView </div>
-    </DefaultLayout>
+    <>
+      <PageTitle title="Hubs | VOLTEM" />
+      <DefaultLayout>
+        <Breadcrumb pageName="Centrales" />
+        <div>HubsView </div>
+      </DefaultLayout>
+    </>
   );
 };
 

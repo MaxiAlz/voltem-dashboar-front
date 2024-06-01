@@ -13,7 +13,7 @@ const Footer = () => {
           >
             <span className="text-sm font-semibold text-primary opacity-80">
               {' '}
-              SanTI{' '}
+              ShanTI{' '}
             </span>
           </a>
           <span className="text-sm"> - Desarrollo de Productos Digitales</span>
