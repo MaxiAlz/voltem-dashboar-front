@@ -4,9 +4,8 @@ import TableUsers from '../../../components/Tables/TableUsers';
 import DefaultLayout from '../../../layout/DefaultLayout';
 import { CustomButton } from '../../../components/Buttons/CustomButtons';
 import useAxios from '../../../hooks/useAxios';
-import { PaginatedData } from '../../../common/interfaces/PaginatedData';
-import axiosInstance from '../../../util/axios';
 import PageTitle from '../../../components/PageTitle';
+import Pagination from '../../../components/Pagination';
 
 export interface UserData {
   id: string;
@@ -18,14 +17,18 @@ export interface UserData {
 
 export const UsersPage = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const { data, error, loading, refetch } = useAxios<UserData>('user');
+  const { data, error, loading, setPagination, refetch, pagination } =
+    useAxios<UserData>('user');
+
+  const handlePageChange = (page: number) => {
+    setPagination({ ...pagination, currentPage: page });
+  };
 
   return (
     <>
       <PageTitle title="Usuarios | VOLTEM" />
-
       <DefaultLayout>
-        <div className="flex justify-between place-items-center mb-5 px-5">
+        <div className="flex justify-between place-items-center mb-5">
           <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
             Usuarios
           </h4>
@@ -44,7 +47,8 @@ export const UsersPage = () => {
           setOpenModal={setOpenModal}
           afterSubmit={refetch}
         />
-        <TableUsers data={data?.items} />
+        <TableUsers data={data} />
+        <Pagination pagination={pagination} onPageChange={handlePageChange} />
       </DefaultLayout>
     </>
   );

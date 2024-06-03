@@ -2,7 +2,7 @@ import { UserData } from '../../pages/Dashboard/users/UsersPage';
 import AvatarInitials from '../Avatar/AvatarInitials';
 
 interface Props{
-  data?: UserData[]
+  data?: UserData[] | null
 }
 
 const TableUsers = ({data}:Props) => {
