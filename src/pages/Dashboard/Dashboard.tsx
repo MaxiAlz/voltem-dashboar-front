@@ -1,3 +1,3 @@
 export {OverView} from './overview/OverView';
-export { HubsView } from './Hubs/HubsView';
+export { HubsPage } from './Hubs/HubsPage';
 export { UsersPage } from './users/UsersPage';

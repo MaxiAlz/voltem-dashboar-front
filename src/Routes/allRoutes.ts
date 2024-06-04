@@ -1,5 +1,5 @@
 import SignIn from '../pages/Authentication/SignIn';
-import { HubsView, OverView, UsersPage } from '../pages/Dashboard/Dashboard';
+import { HubsPage, OverView, UsersPage } from '../pages/Dashboard/Dashboard';
 
 interface RouteObject {
   path: string;
@@ -10,7 +10,7 @@ interface RouteObject {
 export const authProtectedRoutes: Array<RouteObject> = [
   { path: '/overview', component: OverView },
   { path: '/users', component: UsersPage },
-  { path: '/hubs', component: HubsView },
+  { path: '/hubs', component: HubsPage },
 ];
 
 export const publicRoutes = [

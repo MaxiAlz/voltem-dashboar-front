@@ -5,10 +5,8 @@ import { FormikProps } from 'formik';
 interface UserFormValues {
   name: string;
   lastname: string;
-  // companyname: string;
   username: string;
   email: string;
-  // adress: string;
   password: string;
 }
 interface UserFormProps {
