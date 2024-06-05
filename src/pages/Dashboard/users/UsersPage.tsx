@@ -10,9 +10,11 @@ import Pagination from '../../../components/Pagination';
 export interface UserData {
   id: string;
   name: string;
+  email: string;
   lastname: string;
   username: string;
   is_active: string;
+  role: string;
 }
 
 export const UsersPage = () => {
