@@ -2,9 +2,10 @@ import Modal from './Modal';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { errorMesagges } from '../../common/errorMesages/errorMessages';
-import axiosInstance from '../../util/axios';
 import { notify } from '../../hooks/notify';
 import { HubForm } from '../Forms/HubForm';
+import { HttpClient } from '../../services/http/httpServiceInteface';
+import httpService from '../../services/http/httpService';
 
 const validationSchema = Yup.object({
   name: Yup.string().required(errorMesagges.required),
@@ -16,11 +17,8 @@ interface Props {
   afterSubmit?: () => void;
 }
 
-const CreateHubModal = ({
-  openModal,
-  setOpenModal,
-  afterSubmit,
-}: Props) => {
+const CreateHubModal = ({ openModal, setOpenModal, afterSubmit }: Props) => {
+  const httpClient: HttpClient = httpService;
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -28,7 +26,7 @@ const CreateHubModal = ({
     validationSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
-        await axiosInstance.post('hub', values);
+        await httpClient.post('/hub', values);
         notify({ message: 'se guardo con exito', type: 'success' });
         setOpenModal(false);
         resetForm();
@@ -51,7 +49,7 @@ const CreateHubModal = ({
           formik.resetForm();
         }}
         title={'Crear Hub'}
-        successTitle={'Crear Hub'}
+        successTitle={'Crear Nuevo Hub'}
         icon={'send'}
         handleSubmit={formik.handleSubmit}
       >
